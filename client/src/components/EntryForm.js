@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
-import API from "../services/api";
-
-
+// EntryForm
 function EntryForm({
 
   onSubmit,
@@ -31,6 +29,13 @@ function EntryForm({
         journal: editEntry.journal || "",
       });
 
+    } else {
+      setFormData({
+        mood: "Happy",
+        intensity: 5,
+        category: "Personal",
+        journal: "",
+      });
     }
 
   }, [editEntry]);
@@ -41,26 +46,22 @@ function EntryForm({
 
     setFormData({
       ...formData,
-      [name]: name === "intensity" ? Number(value) : value;
+      [name]: name === "intensity" ? Number(value) : value,
     })
   }
 
   // Handle form submission
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
-    if (!editEntry) {
-      // Validate form
-      setFormData({
-        mood: "Happy",
-        intensity: 5,
-        category: "Personal",
-        journal: "",
-      })
-    }
+    onSubmit(formData);
 
-
+    setFormData({
+      mood: "Happy",
+      intensity: 5,
+      category: "Personal",
+      journal: "",
+    });
   };
 
 
@@ -121,14 +122,14 @@ function EntryForm({
         type="submit"
         className="btn btn-primary"
       >
-        { editEntry ? "Update Entry" : "Add Entry" }
+        {editEntry ? "Update Entry" : "Add Entry"}
       </button>
 
       {/* Cancel Button */}
-      { editEntry && (
-        <button 
+      {editEntry && (
+        <button
           type="button"
-          onClick={cancelEdit}
+          onClick={cancelEntry}
         >
           Cancel Edit
         </button>
