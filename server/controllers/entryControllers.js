@@ -40,7 +40,7 @@ const createEntry = async (req, res) => {
     res.status(201).json(entry);
   } catch (err) {
 
-    res.status(201).json({
+    res.status(500).json({
       message: err.message,
     });
     

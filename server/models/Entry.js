@@ -6,7 +6,7 @@ const entrySchema = mongoose.Schema({
 
   mood: {
     type: String,
-    requires:true,
+    required: true,
   },
 
   journal: {
