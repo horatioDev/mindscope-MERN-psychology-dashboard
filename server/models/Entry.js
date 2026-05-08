@@ -1,29 +1,33 @@
-// Import mongoose
+// Import Mongoose
 const mongoose = require("mongoose");
 
-// Create Entry Schema
-const entrySchema = mongoose.Schema({
-
-  mood: {
-    type: String,
-    required: true,
+// Create Entry Model 
+const entrySchema = new mongoose.Schema(
+  {
+    mood: {
+      type: String,
+      required: true,
+      enum: ["Happy", "Sad", "Anxious", "Calm", "Angry", "Stressed", "Motivated"],
+    },
+    intensity: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 10,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: ["School", "Work", "Family", "Health", "Social", "Personal"],
+      default: "Personal",
+    },
+    journal: {
+      type: String,
+      required: true,
+    },
   },
-
-  journal: {
-    type: String,
-    required: true,
-  },
-
-  emotion: {
-    type: String,
-    default: "unknown",
-  },
-
-  date: {
-    type: Date,
-    default:Date.now,
-  }
-});
+  { timestamps: true }
+);
 
 // Export Model
 module.exports = mongoose.model("Entry", entrySchema);
