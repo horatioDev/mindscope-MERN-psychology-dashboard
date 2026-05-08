@@ -14,9 +14,3 @@ export const updateEntry = (id, entryData) => axios.put(`${API_URL}/${id}`, entr
 
 // Delete Entry
 export const deleteEntry = (id) => axios.delete(`${API_URL}/${id}`)
-
-const API = axios.create({
-  baseURL: ,
-});
-
-export default API;

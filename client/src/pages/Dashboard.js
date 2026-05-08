@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import API from "../services/api";
-
 import EntryForm from "../components/EntryForm";
 
 
