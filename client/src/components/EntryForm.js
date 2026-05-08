@@ -5,20 +5,18 @@ import API from "../services/api";
 
 function EntryForm({
 
-  fetchEntries,
+  onSubmit,
   editEntry,
-  setEditEntry,
+  cancelEntry,
 
 }) {
 
-  const [mood, setMood] = useState("");
-
-  const [journal, setJournal] = useState("");
-
-  const [loading, setLoading] =
-  useState(false);
-
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    mood: "Happy",
+    intensity: 5,
+    category: "Personal",
+    journal: "",
+  });
 
 
   // Populate form when editing
@@ -26,84 +24,42 @@ function EntryForm({
 
     if (editEntry) {
 
-      setMood(editEntry.mood);
-
-      setJournal(editEntry.journal);
+      setFormData({
+        mood: editEntry.mood || "Happy",
+        intensity: editEntry.intensity || 5,
+        category: editEntry.category || "Personal",
+        journal: editEntry.journal || "",
+      });
 
     }
 
   }, [editEntry]);
 
+  // Handle form 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: name === "intensity" ? Number(value) : value;
+    })
+  }
 
   // Handle form submission
-  const submitHandler = async (e) => {
+  const handleSubmit = (e) => {
 
     e.preventDefault();
 
-    // Validate form
-    if (!mood || !journal) {
-
-      setError(
-        "Please complete all fields."
-      );
-      return
-
+    if (!editEntry) {
+      // Validate form
+      setFormData({
+        mood: "Happy",
+        intensity: 5,
+        category: "Personal",
+        journal: "",
+      })
     }
 
-    setError("")
-    setLoading(true)
-
-    try {
-
-      // UPDATE ENTRY
-      if (editEntry) {
-
-        await API.put(
-
-          `/entries/${editEntry._id}`,
-
-          {
-            mood,
-            journal,
-          }
-
-        );
-
-        // Clear edit mode
-        setEditEntry(null);
-
-      } else {
-
-        // CREATE ENTRY
-        await API.post("/entries", {
-
-          mood,
-          journal,
-
-        });
-
-      }
-
-
-      // Clear form
-      setMood("");
-
-      setJournal("");
-
-
-      // Refresh entries
-      fetchEntries();
-
-      console.log("Form Submitted");
-      setLoading(false);
-
-    } catch (err) {
-      setError(
-        "Something went wrong."
-      );
-      setLoading(false);
-
-    }
 
   };
 
@@ -112,53 +68,71 @@ function EntryForm({
 
     <form
       className="entry-form"
-      onSubmit={submitHandler}
+      onSubmit={handleSubmit}
     >
 
-      {/* Mood Input */}
+      {/* Mood Selection */}
+      <label>Mood</label>
+      <select name="mood" value={formData.mood} onChange={handleChange}>
+        <option>Happy</option>
+        <option>Sad</option>
+        <option>Anxious</option>
+        <option>Calm</option>
+        <option>Angry</option>
+        <option>Stressed</option>
+        <option>Motivated</option>
+      </select>
+
+
+      {/* Intensity Input */}
+      <label>Intensity: {formData.intensity}/10</label>
       <input
-        type="text"
-        placeholder="Mood"
-        value={mood}
-        onChange={(e) =>
-          setMood(e.target.value)
-        }
+        type="range"
+        name="intensity"
+        min="1"
+        max="10"
+        value={formData.intensity}
+        onChange={handleChange}
       />
 
+      {/* Category Selection */}
+      <label>Category</label>
+      <select name="category" value={formData.category} onChange={handleChange}>
+        <option>School</option>
+        <option>Work</option>
+        <option>Family</option>
+        <option>Health</option>
+        <option>Social</option>
+        <option>Personal</option>
+      </select>
 
-      {/* Journal Input */}
+      {/* Journal Textarea */}
+      <label>Journal Reflection</label>
       <textarea
-        placeholder="Journal Entry"
-        value={journal}
-        onChange={(e) =>
-          setJournal(e.target.value)
-        }
+        name="journal"
+        value={formData.journal}
+        onChange={handleChange}
+        placeholder="Write your reflection..."
+        required
       />
-
-      {error && (
-
-        <p className="error-message">
-          {error}
-        </p>
-
-      )}
-
 
       {/* Submit Button */}
       <button
         type="submit"
         className="btn btn-primary"
-        disabled={loading}
       >
-
-        { loading
-            ? "Saving..."
-            : editEntry
-            ? "Update Entry"
-            : "Save Entry"
-        }
-
+        { editEntry ? "Update Entry" : "Add Entry" }
       </button>
+
+      {/* Cancel Button */}
+      { editEntry && (
+        <button 
+          type="button"
+          onClick={cancelEdit}
+        >
+          Cancel Edit
+        </button>
+      )}
 
     </form>
 
