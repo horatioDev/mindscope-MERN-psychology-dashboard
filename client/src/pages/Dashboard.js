@@ -6,6 +6,10 @@ import EntryForm from "../components/EntryForm";
 // Import CRUD Functionality
 import { createEntry, getEntries, updateEntry, deleteEntry } from "../services/api";
 
+// Import Mood Chart
+import MoodChart from "../components/MoodCharts";
+
+
 
 function Dashboard() {
 
@@ -104,9 +108,9 @@ function Dashboard() {
       ).sort((a, b) => b[1] - a[1])[0][0]
       : "None";
 
-  
-    // Last Entry Date
-    const latestEntryDate =
+
+  // Last Entry Date
+  const latestEntryDate =
     entries.length > 0
       ? new Date(entries[0].createdAt).toLocaleDateString()
       : "No entries";
@@ -117,6 +121,7 @@ function Dashboard() {
 
     <div className="dashboard">
 
+      {/* Title */}
       <h1>
         MindScope Dashboard Mood Analytics
       </h1>
@@ -128,7 +133,7 @@ function Dashboard() {
       {error && <p className="error-message">{error}</p>}
 
       {/* Statistics Section */}
-        <section className="stats-grid">
+      <section className="stats-grid">
         <div className="stat-card">
           <h3>Total Entries</h3>
           <p>{totalEntries}</p>
@@ -150,25 +155,29 @@ function Dashboard() {
         </div>
       </section>
 
+      {/* Mood Chart */}
+      <MoodChart entries={entries} />
+
+      {/* Entry Form */}
       <EntryForm
         onSubmit={handleSubmit}
         editEntry={editEntry}
         cancelEntry={cancelEdit}
       />
 
-      {/* Loading */}
+      {/* History */}
       {loading ? (
         <p>Loading entries</p>
       ) : (
         <section className="entries-list">
           <h2>Reflection History</h2>
 
-          { entries.length === 0 ? (
+          {entries.length === 0 ? (
             <p>No entries available. Add your first reflection above.</p>
           ) : (
             // Map entries
             entries.map((entry) => (
-              <div 
+              <div
                 className="entry-card"
                 key={entry._id}
               >
