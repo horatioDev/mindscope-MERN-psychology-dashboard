@@ -6,16 +6,18 @@ const Entry = require("../models/Entry");
 const getEntries = async (req, res) => {
 
   try {
-    // Find all entries
-    const entries = await Entry.find();
+    // Find all entries by most recent
+    const entries = await Entry.find().sort({ createdAt: -1 });
 
     // Send response
-    res.json(entries)
+    res.status(200).json(entries)
     
   } catch (err) {
     
     res.status(500).json({
-      message: err.message
+
+      message: "Error fetching entries",
+      error: err.message
     })
   }
 
@@ -27,21 +29,23 @@ const createEntry = async (req, res) => {
 
   try {
     // Deconstruct request
-    const { mood, journal } = req.body;
+    const { mood, intensity, category, journal } = req.body;
 
     // Create new entry
     const entry = await Entry.create({
       mood,
+      intensity,
+      category,
       journal,
-      emotion: "happy" // Placeholder tbr
     });
 
     // Send response
     res.status(201).json(entry);
   } catch (err) {
 
-    res.status(500).json({
-      message: err.message,
+    res.status(400).json({
+      message: "Error creating entry",
+      error: err.message,
     });
     
   }
@@ -78,8 +82,15 @@ const getEntryById = async (req, res) => {
 const updateEntry = async (req, res) => {
 
   try {
-    // Retrieve entry
-    const entry = await Entry.findById(req.params.id);
+    const { mood, intensity, category, journal } = req.body;
+
+    
+    // Update Entry
+    const entry = await Entry.findByIdAndUpdate(
+      req.params.id,
+      { mood, intensity, category, journal },
+      {new: true, runValidators: true }
+    );
     
     // Send response if entry isn't found
     if(!entry) {
@@ -88,20 +99,16 @@ const updateEntry = async (req, res) => {
       })
     }
 
-    // Update input(s)
-    entry.mood = req.body.mood || entry.mood;
-    entry.journal = req.body.journal || entry.journal;
+    
 
-    // Update Entry
-    const updatedEntry = await entry.save();
-
-    res.json(updatedEntry);
+    res.status(200).json(entry);
 
     
   } catch (err) {
 
-    res.status(500).json({
-      message: err.message,
+    res.status(400).json({
+      message: "Error updating entry",
+      error: err.message,
     });
     
   }
@@ -113,7 +120,7 @@ const deleteEntry = async (req, res) => {
 
   try {
     // Retrieve entry
-    const entry = await Entry.findById(req.params.id);
+    const entry = await Entry.findByIdAndDelete(req.params.id);
     
     // Send response if entry isn't found
     if(!entry) {
@@ -122,18 +129,17 @@ const deleteEntry = async (req, res) => {
       })
     }
 
-    // Delete Entry
-    await entry.deleteOne();
 
     // Send response
-    res.json({
-      message: "Entry deleted",
+    res.status(200).json({
+      message: "Entry deleted successfully",
     })
 
   } catch (err) {
 
     res.status(500).json({
-      message: err.message,
+      message: "Error deleting entry",
+      error: err.message,
     });
     
   }
