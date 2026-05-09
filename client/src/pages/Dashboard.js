@@ -44,7 +44,7 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if(!token) {
+    if (!token) {
       window.location.href = "/login";
     } else {
       loadEntries();
@@ -98,6 +98,8 @@ function Dashboard() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    // Refresh to login
+    window.location.href = "/login";
   }
 
   // Count Entries
@@ -133,13 +135,19 @@ function Dashboard() {
 
     <div className="dashboard">
 
-      {/* Title */}
-      <h1>
-        MindScope Dashboard Mood Analytics
-      </h1>
-      <p className="subtitle">
-        Track emotional patterns, reflection categories, and mood intensity.
-      </p>
+      {/* Dashboard Header */}
+      <div className="dashboard-header">
+        <div>
+          <h1>MindScope Dashboard Mood Analytics</h1>
+          <p className="subtitle">
+            Track emotional patterns, reflection categories, and mood intensity.
+          </p>
+        </div>
+
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      </div>
 
       {/* Error Message */}
       {error && <p className="error-message">{error}</p>}

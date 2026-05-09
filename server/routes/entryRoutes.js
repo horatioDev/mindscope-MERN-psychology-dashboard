@@ -17,7 +17,7 @@ router.route("/")
 
 // Dynamic routes
 router.route("/:id")
-  .get(getEntryById)
+  .get(protect, getEntryById)
   .put(protect, updateEntry)
   .delete(protect, deleteEntry)
 

@@ -60,7 +60,10 @@ const getEntryById = async (req, res) => {
 
   try {
     // Retrieve entry
-    const entry = await Entry.findById(req.params.id);
+    const entry = await Entry.findById({
+      _id: req.params.id,
+      user: req.user._id,
+    });
 
     // Send response if entry isn't found
     if(!entry) {
@@ -89,8 +92,9 @@ const updateEntry = async (req, res) => {
 
     
     // Update Entry
-    const entry = await Entry.findByIdAndUpdate(
-      req.params.id,
+    const entry = await Entry.findByIdAndUpdate({
+      _id: req.params.id,
+      user: req.user._id,},
       { mood, intensity, category, journal },
       {new: true, runValidators: true }
     );
@@ -123,7 +127,10 @@ const deleteEntry = async (req, res) => {
 
   try {
     // Retrieve entry
-    const entry = await Entry.findByIdAndDelete(req.params.id);
+    const entry = await Entry.findByIdAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
     
     // Send response if entry isn't found
     if(!entry) {

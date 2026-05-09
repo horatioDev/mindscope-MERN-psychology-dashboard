@@ -26,6 +26,13 @@ body {
   padding: 20px;
 }
 
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
 .dashboard-title {
   text-align: center;
@@ -33,6 +40,21 @@ body {
   margin-bottom: 30px;
   color: #222;
 }
+
+.logout-button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: #b91c1c;
+}
+
 
 
 /* =========================
