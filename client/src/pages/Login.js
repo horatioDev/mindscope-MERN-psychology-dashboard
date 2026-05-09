@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { loginUser } from "../services/authServices";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,7 +27,8 @@ function Login() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      window.location.href = "/";
+      // Redirect to Dashboard
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError(error.response?.data?.message || "Login failed");
@@ -36,6 +39,10 @@ function Login() {
     <div className="auth-page">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1>Login</h1>
+
+        <p className="auth-subtitle">
+          Welcome back to MindScope.
+        </p>
 
         {error && <p className="error-message">{error}</p>}
 
@@ -57,7 +64,13 @@ function Login() {
           required
         />
 
+        {/* Login Button */}
         <button type="submit">Login</button>
+
+        {/* Create Account Link */}
+         <p className="auth-link">
+          No account? <Link to="/register">Create one</Link>
+        </p>
       </form>
     </div>
   );
