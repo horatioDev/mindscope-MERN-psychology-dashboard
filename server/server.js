@@ -8,6 +8,9 @@ const cors = require("cors");
 // Import Db connection
 const connectDB = require("./config/db");
 
+// Import Auth routes
+const authRoutes = require("./routes/authRoutes")
+
 // Create app
 const app = express();
 
@@ -20,6 +23,9 @@ app.use(express.json());
 
 // Routes
 app.use("/api/entries", require("./routes/entryRoutes"));
+app.use("api/auth", authRoutes);
+
+
 
 // Test routes tbr
 // app.get("/", (req, res) => {

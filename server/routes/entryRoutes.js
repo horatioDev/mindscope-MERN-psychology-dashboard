@@ -1,6 +1,9 @@
 // Import express
 const express = require("express");
 
+// Import Protect Middleware
+const { protect } = require("../middleware/authMiddleware");
+
 // Create router
 const router = express.Router();
 
@@ -9,14 +12,14 @@ const { getEntries, createEntry, getEntryById, updateEntry, deleteEntry } = requ
 
 // Routes
 router.route("/")
-  .get(getEntries)
-  .post(createEntry)
+  .get(protect, getEntries)
+  .post(protect, createEntry)
 
 // Dynamic routes
 router.route("/:id")
   .get(getEntryById)
-  .put(updateEntry)
-  .delete(deleteEntry)
+  .put(protect, updateEntry)
+  .delete(protect, deleteEntry)
 
 // Export router
   module.exports = router;
