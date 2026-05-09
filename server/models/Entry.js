@@ -4,6 +4,12 @@ const mongoose = require("mongoose");
 // Create Entry Model 
 const entrySchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+    
     mood: {
       type: String,
       required: true,
