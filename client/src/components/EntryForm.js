@@ -121,6 +121,7 @@ function EntryForm({
       <button
         type="submit"
         className="btn btn-primary"
+        disabled={!formData.journal.trim()}
       >
         {editEntry ? "Update Entry" : "Add Entry"}
       </button>

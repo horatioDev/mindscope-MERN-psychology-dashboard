@@ -182,6 +182,7 @@ function Dashboard() {
                 key={entry._id}
               >
                 <h3>{entry.mood}</h3>
+                <p><strong>Category:</strong> {entry.category}</p>
                 <p><strong>Intensity:</strong> {entry.intensity}/10</p>
                 <p><strong>Date::</strong>{" "} {new Date(entry.createdAt).toLocaleString()}</p>
                 <p>{entry.journal}</p>

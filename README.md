@@ -135,7 +135,9 @@ This project was built to improve:
 - REST API design
 - MongoDB integration
 - React state management
-- Full CRUD functionality
+- Data visualization
+- Psychology-oriented analytics
+- CRUD application architecture
 
 ---
 
@@ -157,17 +159,9 @@ This project was built to improve:
 
 ![Dashboard](./screenshots/dashboard.png)
 
-### Entry
-
-![Dashboard](./screenshots/entries.png)
-
 ### Edit Entry
 
 ![Edit Entry](./screenshots/edit.png)
-
-### Update Entry
-
-![Update Entry](./screenshots/update.png)
 
 ### Delete Entry
 

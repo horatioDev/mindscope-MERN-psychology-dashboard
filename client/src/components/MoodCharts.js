@@ -19,8 +19,13 @@ function MoodChart({ entries }) {
     count,
   }));
 
+  // Handle Empty Chart
   if (entries.length === 0) {
-    return null;
+    return (
+      <section className="chart-section">
+        <p>No chart data available yet.</p>
+      </section>
+    );
   }
 
   return (
