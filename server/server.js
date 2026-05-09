@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/entries", require("./routes/entryRoutes"));
-app.use("api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 
 
 
