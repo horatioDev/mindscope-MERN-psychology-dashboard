@@ -163,12 +163,17 @@ The application includes:
 
 ## 🎯 Future Improvements
 
-* Authentication
 * AI emotion detection
-* Charts & analytics
-* JWT authorization
-* Deployment
-* Mobile responsiveness
+* NLP journal analysis
+* Behavioral insights engine
+* Burnout detection
+* Habit correlation tracking
+* PDF report generation
+* Weekly analytics summaries
+* Research export mode
+* Deployment to Vercel + Render
+* Tailwind CSS migration
+* Framer Motion animations
 
 ---
 
@@ -177,12 +182,17 @@ The application includes:
 This project was built to improve:
 
 - MERN stack development
-- REST API design
+- REST API architecture
 - MongoDB integration
 - React state management
 - Data visualization
 - Psychology-oriented analytics
 - CRUD application architecture
+- Authentication systems
+- JWT authorization
+- Frontend routing
+- Responsive design
+- Full-stack application architecture
 
 ---
 
@@ -213,6 +223,6 @@ This project was built to improve:
 ## 👨‍💻 Author
 Horatio Hanley
 
-Psychology Student @ SNHU
-Full-Stack MERN Developer
-Behavioral Analytics & Psychology Technology Enthusiast
+- Psychology Student @ SNHU
+- Full-Stack MERN Developer
+- Behavioral Analytics & Psychology Technology Enthusiast
