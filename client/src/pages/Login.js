@@ -1,19 +1,27 @@
-const handleSubmit = async (e) => {
-  e.preventDefault();
+import { useState } from "react";
+import { loginUser } from "../services/authServices";
 
-  try {
-    const response = await loginUser(formData);
+function Login() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Store JWT token
-    localStorage.setItem("token", response.data.token);
+    try {
+      const response = await loginUser(formData);
 
-    // Store logged in user
-    localStorage.setItem("user", JSON.stringify(response.data));
+      // Store JWT token
+      localStorage.setItem("token", response.data.token);
 
-    // Redirect to dashboard
-    window.location.href = "/";
+      // Store logged in user
+      localStorage.setItem("user", JSON.stringify(response.data));
 
-  } catch (error) {
-    console.log(error);
-  }
-};
+      // Redirect to dashboard
+      window.location.href = "/";
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+}
+
+export default Login;
