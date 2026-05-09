@@ -92,18 +92,49 @@ MONGO_URI=mongodb://localhost:27017/mindscope
 ---
 
 ## 📡 API Routes
+### Authentication Routes
 
-### Get Entries
+| Method | Route              | Description   |
+| ------ | ------------------ | ------------- |
+| POST   | /api/auth/register | Register user |
+| POST   | /api/auth/login    | Login user    |
 
-```text
-GET /api/entries
-```
+## Entry Routes
 
-### Create Entry
+| Method | Route              | Description          |
+| ------ | ------------------ | -------------------- |
+| GET    | /api/entries       | Get all user entries |
+| GET    | /api/entries/:id   | Get single entry     |
+| POST   | /api/entries       | Create entry         |
+| PUT    | /api/entries/:id   | Update entry         |
+| DELETE | /api/entries/:id   |	Delete entry         |
 
-```text
-POST /api/entries
-```
+---
+
+## 🔒 Authentication Flow
+
+MindScope uses JWT authentication for secure user sessions.
+
+### Authentication Features
+* Password hashing with bcryptjs
+* JWT token generation
+* Protected backend middleware
+* Protected frontend routes
+* User-specific database queries
+* Automatic login persistence
+* Logout session clearing
+
+---
+
+## 📊 Dashboard Analytics
+
+The dashboard provides:
+
+* Total entry count
+* Average emotional intensity
+* Most common mood
+* Latest journal activity
+* Mood frequency visualization
 
 ---
 
@@ -113,6 +144,20 @@ POST /api/entries
 * Behavioral tracking
 * Mood analysis
 * Emotional journaling
+* Reflection analysis
+* Mood trend visualization
+* Emotional awareness development
+
+---
+
+## 📱 Responsive Design
+
+The application includes:
+
+* Mobile-friendly layout
+* Responsive navigation
+* Flexible dashboard components
+* Adaptive spacing and typography
 
 ---
 
@@ -157,17 +202,29 @@ This project was built to improve:
 
 ### Dashboard
 
-![Dashboard](./screenshots/dashboard%20.png)
+![Dashboard](./screenshots/dashboard.png)
+
+### Mood Analytics 
+
+![Mood Analytics](./screenshots/mood.png)
+
+### Login Page
+
+![Login Page Entry](./screenshots/login.png)
+
+### Register Page
+
+![Register Page](./screenshots/register.png)
 
 ### Edit Entry
 
 ![Edit Entry](./screenshots/edit.png)
 
-### Delete Entry
-
-![Delete Entry](./screenshots/delete.png)
-
 ---
 
 ## 👨‍💻 Author
 Horatio Hanley
+
+Psychology Student @ SNHU
+Full-Stack MERN Developer
+Behavioral Analytics & Psychology Technology Enthusiast
