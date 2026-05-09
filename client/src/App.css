@@ -14,29 +14,6 @@ body {
 }
 
 
-/* NAVBARMAIN DASHBOARD */
-
-.dashboard {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.dashboard-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #222;
-}
-
 .logout-button {
   background: #dc2626;
   color: white;
