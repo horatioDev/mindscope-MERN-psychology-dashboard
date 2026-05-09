@@ -12,6 +12,9 @@ import { createEntry, getEntries, updateEntry, deleteEntry } from "../services/a
 // Import Mood Chart
 import MoodChart from "../components/MoodCharts";
 
+// Import Emotion Chart
+import EmotionChart from "../components/EmotionChart";
+
 
 
 function Dashboard() {
@@ -170,6 +173,10 @@ function Dashboard() {
       {/* Mood Chart */}
       <MoodChart entries={entries} />
 
+      {/* Emotion Chart */}
+      <EmotioChart entries={entries} />
+      
+
       {/* Entry Form */}
       <EntryForm
         onSubmit={handleSubmit}
@@ -196,6 +203,7 @@ function Dashboard() {
                 <h3>{entry.mood}</h3>
                 <p><strong>Category:</strong> {entry.category}</p>
                 <p><strong>Intensity:</strong> {entry.intensity}/10</p>
+                <p><strong>Detected Emotion:</strong> {entry.emotion || "Not analyzed"}</p>
                 <p><strong>Date::</strong>{" "} {new Date(entry.createdAt).toLocaleString()}</p>
                 <p>{entry.journal}</p>
 
