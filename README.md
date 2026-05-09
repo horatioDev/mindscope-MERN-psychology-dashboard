@@ -157,7 +157,7 @@ This project was built to improve:
 
 ### Dashboard
 
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./screenshots/dashboard%20.png)
 
 ### Edit Entry
 
