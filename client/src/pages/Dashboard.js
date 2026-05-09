@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 // Import Entry Form
 import EntryForm from "../components/EntryForm";
 
+// Import Navbar
+import Navbar from "../components/Navbar";
+
 // Import CRUD Functionality
 import { createEntry, getEntries, updateEntry, deleteEntry } from "../services/api";
 
@@ -130,29 +133,25 @@ function Dashboard() {
       : "No entries";
 
 
-
   return (
+  <>
+    {/* Dashboard Navbar */}
+    <Navbar />
 
-    <div className="dashboard">
+    {/* Dashboard Header */}
+    <main className="dashboard">
+      <section className="dashboard-hero">
+        <h1>MindScope Dashboard</h1>
+        <p className="subtitle">
+          Track emotional patterns, reflection categories, and mood intensity.
+        </p>
+      </section>
 
-      {/* Dashboard Header */}
-      <div className="dashboard-header">
-        <div>
-          <h1>MindScope Dashboard Mood Analytics</h1>
-          <p className="subtitle">
-            Track emotional patterns, reflection categories, and mood intensity.
-          </p>
-        </div>
-
-        <button onClick={handleLogout} className="logout-button">
-          Logout
-        </button>
-      </div>
-
-      {/* Error Message */}
       {error && <p className="error-message">{error}</p>}
 
-      {/* Statistics Section */}
+      {/* keep your stats, chart, form, and entries below */}
+    </main>
+     {/* Statistics Section */}
       <section className="stats-grid">
         <div className="stat-card">
           <h3>Total Entries</h3>
@@ -218,9 +217,10 @@ function Dashboard() {
         </section>
       )}
 
-    </div>
 
-  );
+  </>
+);
+
 
 }
 
