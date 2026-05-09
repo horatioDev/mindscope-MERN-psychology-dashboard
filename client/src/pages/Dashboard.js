@@ -42,7 +42,13 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    loadEntries();
+    const token = localStorage.getItem("token");
+
+    if(!token) {
+      window.location.href = "/login";
+    } else {
+      loadEntries();
+    }
   }, [])
 
   // Handle Form Submission
@@ -87,6 +93,12 @@ function Dashboard() {
   const cancelEdit = () => {
     setEditEntry(null);
   };
+
+  // Handle Logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  }
 
   // Count Entries
   const totalEntries = entries.length;
