@@ -6,8 +6,10 @@ const Entry = require("../models/Entry");
 const getEntries = async (req, res) => {
 
   try {
-    // Find all entries by most recent
-    const entries = await Entry.find().sort({ createdAt: -1 });
+    // Find all user entries by most recent
+    const entries = await Entry.find({
+      user: req.user._id,
+    }).sort({ createdAt: -1 });
 
     // Send response
     res.status(200).json(entries)
@@ -33,6 +35,7 @@ const createEntry = async (req, res) => {
 
     // Create new entry
     const entry = await Entry.create({
+      user: req.user._id,
       mood,
       intensity,
       category,
