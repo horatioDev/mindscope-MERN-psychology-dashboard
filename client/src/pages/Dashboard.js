@@ -97,13 +97,6 @@ function Dashboard() {
     setEditEntry(null);
   };
 
-  // Handle Logout
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    // Refresh to login
-    window.location.href = "/login";
-  }
 
   // Count Entries
   const totalEntries = entries.length;
