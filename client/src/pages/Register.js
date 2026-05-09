@@ -1,9 +1,10 @@
 import { useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authServices";
 
 function Register() {
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -35,7 +36,7 @@ function Register() {
       localStorage.setItem("user", JSON.stringify(response.data));
 
       // Redirect to dashboard
-      window.location.href = "/";
+      navigate("/");
 
     } catch (error) {
 
@@ -55,6 +56,10 @@ function Register() {
       <form className="auth-form" onSubmit={handleSubmit}>
 
         <h1>Create Account</h1>
+
+        <p className="auth-subtitle">
+          Start tracking your mood and reflection patterns.
+        </p>
 
         {error && <p className="error-message">{error}</p>}
 
@@ -92,6 +97,11 @@ function Register() {
         <button type="submit">
           Register
         </button>
+
+        {/* Login Link */}
+        <p className="auth-link">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
 
       </form>
 
