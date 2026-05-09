@@ -186,18 +186,6 @@ This project was built to improve:
 
 ---
 
-## 📡 API Routes
-
-| Method | Route | Description |
-|---|---|---|
-| GET | /api/entries | Get all entries |
-| GET | /api/entries/:id | Get single entry |
-| POST | /api/entries | Create entry |
-| PUT | /api/entries/:id | Update entry |
-| DELETE | /api/entries/:id | Delete entry |
-
----
-
 ## 📸 Screenshots
 
 ### Dashboard
