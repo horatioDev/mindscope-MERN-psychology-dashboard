@@ -170,12 +170,13 @@ function Dashboard() {
         </div>
       </section>
 
+      {/* Charts */}
+      <div className="charts-container">
       {/* Mood Chart */}
-      <MoodChart entries={entries} />
-
+        <MoodChart entries={entries} />
       {/* Emotion Chart */}
-      <EmotioChart entries={entries} />
-      
+        <EmotionChart entries={entries} />
+      </div>      
 
       {/* Entry Form */}
       <EntryForm
