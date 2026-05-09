@@ -1,6 +1,4 @@
-/* =========================
-   GLOBAL STYLES
-========================= */
+/* NAVBARGLOBAL STYLES */
 
 * {
   margin: 0;
@@ -16,9 +14,7 @@ body {
 }
 
 
-/* =========================
-   MAIN DASHBOARD
-========================= */
+/* NAVBARMAIN DASHBOARD */
 
 .dashboard {
   max-width: 900px;
@@ -55,11 +51,168 @@ body {
   background: #b91c1c;
 }
 
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  text-decoration: none;
+}
 
-/* =========================
-   FORM STYLES
-========================= */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-user {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.logout-button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: #dc2626;
+}
+
+/* DASHBOARD */
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.dashboard-hero {
+  margin-bottom: 28px;
+}
+
+.dashboard-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* AUTH PAGES */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 20px;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.auth-form h1 {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.auth-form button:hover {
+  background: #1d4ed8;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.auth-link a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .navbar {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard {
+    padding: 24px 16px;
+  }
+
+  .dashboard-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+/* FORM STYLES */
 
 .entry-form {
   background-color: white;
@@ -89,9 +242,7 @@ body {
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 .btn {
   border: none;
@@ -129,9 +280,7 @@ body {
 }
 
 
-/* =========================
-   ENTRY CARDS
-========================= */
+/* ENTRY CARDS */
 
 .entries-container {
   display: flex;
@@ -170,9 +319,7 @@ body {
 }
 
 
-/* =========================
-   EMPTY STATE
-========================= */
+/* NAVBAREMPTY STATE */
 
 .empty-message {
   text-align: center;
@@ -180,18 +327,14 @@ body {
   color: #777;
 }
 
-/* =========================
-   ERRORS
-========================= */
+/* NAVBARERRORS */
 
 .error-message {
   color: red;
   margin-bottom: 10px;
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/* NAVBARRESPONSIVE DESIGN */
 
 @media (max-width: 768px) {
 
