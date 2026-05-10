@@ -1,13 +1,19 @@
-# 🧠 MindScope — MERN Psychology Dashboard
+# 🧠 MindScope — Phase 5 NLP Emotion Analysis System
 
 ## 📊 Overview
 
-MindScope is a MERN stack web application that combines psychology and software engineering to help users:
+MindScope is a full-stack MERN psychology dashboard that combines behavioral journaling, emotional tracking, and NLP-powered emotion analysis.
 
-* Track moods
-* Log journal entries
-* Analyze emotional patterns
-* Visualize behavioral trends
+Phase 5 introduces a Python Flask microservice that analyzes journal reflections and detects emotional patterns using keyword-based NLP logic.
+
+Users can now:
+
+* Track moods manually
+* Write journal reflections
+* Analyze emotional tone automatically
+* Visualize mood frequency
+* Visualize detected emotions
+* Compare self-reported mood vs detected emotion
 
 ---
 
@@ -17,24 +23,109 @@ MindScope is a MERN stack web application that combines psychology and software 
 
 * React
 * Axios
+* Recharts
+* CSS
 
 ### Backend
 
 * Node.js
 * Express.js
+* JWT Authentication
+* Axios
 
 ### Database
 
 * MongoDB
 * Mongoose
 
+### NLP / Machine Learning Service
+
+* Python
+* Flask
+* Flask-CORS
+
+---
+
+## ⚙️ Phase 5 Features
+
+### Mood Tracking
+
+Users can:
+
+* Select moods
+* Set emotional intensity
+* Choose life categories
+* Write journal reflections
+
+---
+
+## ⚙️ NLP Emotion Analysis
+
+Journal text is analyzed automatically using a Flask microservice.
+
+Detected emotions include:
+
+* Anxiety
+* Stress
+* Sadness
+* Anger
+* Positive
+* Neutral
+
+---
+
+## Analytics Dashboard
+
+Includes:
+
+* Mood frequency chart
+* Emotion frequency chart
+* Emotion tagging on entries
+
+---
+
+## Secure User System
+
+* JWT authentication
+* Protected routes
+* User-specific entries
+
+---
+
+## 🧠 NLP Workflow
+
+```text
+React Frontend
+      ↓
+Express Backend
+      ↓
+Flask NLP Service
+      ↓
+Emotion Detection
+      ↓
+MongoDB Storage
+      ↓
+Frontend Visualization
+```
+
 ---
 
 ## 📁 Project Structure
 
 ```text
-client/
-server/
+mindscope/
+│
+├── client/                 # React frontend
+│
+├── server/                 # Express backend
+│
+├── ml-service/             # Flask NLP service
+│   ├── app.py
+│   ├── emotionAnalyzer.py
+│   ├── requirements.txt
+│   └── venv/
+│
+└── README.md
 ```
 
 ---
@@ -80,6 +171,19 @@ npm start
 
 ---
 
+### 4. ML Service Setup
+
+```bash
+cd ml-service
+python -m venv venv
+venv\Scripts\activate
+pip install flask flask-cors
+pip freeze > requirements.txt
+python app.py
+```
+
+---
+
 ## 🔐 Environment Variables
 
 Create `.env` inside `server/`
@@ -92,22 +196,19 @@ MONGO_URI=mongodb://localhost:27017/mindscope
 ---
 
 ## 📡 API Routes
-### Authentication Routes
+### Health Check
 
 | Method | Route              | Description   |
 | ------ | ------------------ | ------------- |
-| POST   | /api/auth/register | Register user |
+| GET   | /health             | Register user |
 | POST   | /api/auth/login    | Login user    |
 
-## Entry Routes
+### Health Check
 
-| Method | Route              | Description          |
-| ------ | ------------------ | -------------------- |
-| GET    | /api/entries       | Get all user entries |
-| GET    | /api/entries/:id   | Get single entry     |
-| POST   | /api/entries       | Create entry         |
-| PUT    | /api/entries/:id   | Update entry         |
-| DELETE | /api/entries/:id   |	Delete entry         |
+| Method | Route    | Description   |
+| ------ | -------- | ------------- |
+| GET    | /health  | Register user |
+| POST   | /analyze | Login user    |        
 
 ---
 
@@ -116,25 +217,45 @@ MONGO_URI=mongodb://localhost:27017/mindscope
 MindScope uses JWT authentication for secure user sessions.
 
 ### Authentication Features
-* Password hashing with bcryptjs
-* JWT token generation
-* Protected backend middleware
-* Protected frontend routes
-* User-specific database queries
-* Automatic login persistence
-* Logout session clearing
+* JWT token authentication
+* Protected routes
+* User-specific entries
+* Secure API access
 
 ---
 
-## 📊 Dashboard Analytics
+## 📈 Charts
+## Mood Chart
 
-The dashboard provides:
+Displays:
 
-* Total entry count
-* Average emotional intensity
-* Most common mood
-* Latest journal activity
-* Mood frequency visualization
+* User-selected moods
+* Mood frequency
+
+Examples:
+
+* Happy
+* Sad
+* Calm
+* Angry
+* Motivated
+
+---
+
+## Emotion Chart
+
+Displays:
+
+* NLP-detected emotions
+* Emotional pattern frequency
+
+Examples:
+
+* Anxiety
+* Stress
+* Positive
+* Neutral
+
 
 ---
 
@@ -163,17 +284,17 @@ The application includes:
 
 ## 🎯 Future Improvements
 
-* AI emotion detection
-* NLP journal analysis
-* Behavioral insights engine
-* Burnout detection
-* Habit correlation tracking
-* PDF report generation
-* Weekly analytics summaries
-* Research export mode
-* Deployment to Vercel + Render
-* Tailwind CSS migration
-* Framer Motion animations
+* Advanced analytics dashboard
+* Correlation charts
+* Mood vs emotion comparison
+* Emotional trend timelines
+* AI recommendations
+* Sentiment scoring
+* Real NLP models
+* Data export
+* PDF reports
+* Calendar view
+* Predictive emotional analysis
 
 ---
 
@@ -181,18 +302,12 @@ The application includes:
 
 This project was built to improve:
 
-- MERN stack development
+- Full-stack engineering
 - REST API architecture
+- Cross-service communication
 - MongoDB integration
-- React state management
-- Data visualization
-- Psychology-oriented analytics
-- CRUD application architecture
-- Authentication systems
-- JWT authorization
-- Frontend routing
-- Responsive design
-- Full-stack application architecture
+- Emotion analysis systems
+- Data analytics foundations
 
 ---
 
@@ -200,23 +315,15 @@ This project was built to improve:
 
 ### Dashboard
 
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./screenshots/emotion_dash.png)
 
 ### Mood Analytics 
 
 ![Mood Analytics](./screenshots/mood.png)
 
-### Login Page
+### Emotion Analytics 
 
-![Login Page Entry](./screenshots/login.png)
-
-### Register Page
-
-![Register Page](./screenshots/register.png)
-
-### Edit Entry
-
-![Edit Entry](./screenshots/edit.png)
+![Emotion Analytics](./screenshots/emotion.png)
 
 ---
 
