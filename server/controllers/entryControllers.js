@@ -99,7 +99,7 @@ const getEntryById = async (req, res) => {
 
   try {
     // Retrieve entry
-    const entry = await Entry.findById({
+    const entry = await Entry.findOne({
       _id: req.params.id,
       user: req.user._id,
     });
@@ -189,7 +189,7 @@ const deleteEntry = async (req, res) => {
 
   try {
     // Retrieve entry
-    const entry = await Entry.findByIdAndDelete({
+    const entry = await Entry.findOneAnDelete({
       _id: req.params.id,
       user: req.user._id,
     });
