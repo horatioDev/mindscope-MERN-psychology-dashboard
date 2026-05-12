@@ -130,103 +130,98 @@ function Dashboard() {
 
 
   return (
-  <>
-    {/* Dashboard Navbar */}
-    <Navbar />
+    <>
+      {/* Dashboard Navbar */}
+      <Navbar />
 
-    {/* Dashboard Header */}
-    <main className="dashboard">
-      <section className="dashboard-hero">
-        <h1>MindScope Dashboard</h1>
-        <p className="subtitle">
-          Track emotional patterns, reflection categories, and mood intensity.
-        </p>
-      </section>
+      {/* Dashboard Header */}
+      <main className="dashboard">
+        <section className="dashboard-hero">
+          <h1>MindScope Dashboard</h1>
+          <p className="subtitle">
+            Track emotional patterns, reflection categories, and mood intensity.
+          </p>
+        </section>
 
-      {error && <p className="error-message">{error}</p>}
+        {error && <p className="error-message">{error}</p>}
 
-      {/* keep your stats, chart, form, and entries below */}
-    </main>
-     {/* Statistics Section */}
-      <section className="stats-grid">
-        <div className="stat-card">
-          <h3>Total Entries</h3>
-          <p>{totalEntries}</p>
-        </div>
+        {/* keep your stats, chart, form, and entries below */}
+        {/* Statistics Section */}
+        <section className="stats-grid">
+          <div className="stat-card">
+            <h3>Total Entries</h3>
+            <p>{totalEntries}</p>
+          </div>
 
-        <div className="stat-card">
-          <h3>Average Intensity</h3>
-          <p>{averageIntensity}/10</p>
-        </div>
+          <div className="stat-card">
+            <h3>Average Intensity</h3>
+            <p>{averageIntensity}/10</p>
+          </div>
 
-        <div className="stat-card">
-          <h3>Most Common Mood</h3>
-          <p>{mostCommonMood}</p>
-        </div>
+          <div className="stat-card">
+            <h3>Most Common Mood</h3>
+            <p>{mostCommonMood}</p>
+          </div>
 
-        <div className="stat-card">
-          <h3>Latest Entry</h3>
-          <p>{latestEntryDate}</p>
-        </div>
-      </section>
+          <div className="stat-card">
+            <h3>Latest Entry</h3>
+            <p>{latestEntryDate}</p>
+          </div>
+        </section>
 
-      {/* Charts */}
-      <section className="chart-section">
         {/* Charts */}
-        <div className="charts-container">
+        <section className="charts-container">
           {/* Mood Chart */}
           <MoodChart entries={entries} />
           {/* Emotion Chart */}
           <EmotionChart entries={entries} />
-        </div>
-      </section>
-
-          
-
-      {/* Entry Form */}
-      <EntryForm
-        onSubmit={handleSubmit}
-        editEntry={editEntry}
-        cancelEntry={cancelEdit}
-      />
-
-      {/* History */}
-      {loading ? (
-        <p>Loading entries</p>
-      ) : (
-        <section className="entries-list">
-          <h2>Reflection History</h2>
-
-          {entries.length === 0 ? (
-            <p>No entries available. Add your first reflection above.</p>
-          ) : (
-            // Map entries
-            entries.map((entry) => (
-              <div
-                className="entry-card"
-                key={entry._id}
-              >
-                <h3>{entry.mood}</h3>
-                <p><strong>Category:</strong> {entry.category}</p>
-                <p><strong>Intensity:</strong> {entry.intensity}/10</p>
-                <p><strong>Detected Emotion:</strong> {entry.emotion || "Not analyzed"}</p>
-                <p><strong>Date::</strong>{" "} {new Date(entry.createdAt).toLocaleString()}</p>
-                <p>{entry.journal}</p>
-
-                {/* Buttons */}
-                <div className="entry-actions">
-                  <button onClick={() => setEditEntry(entry)}>Edit</button>
-                  <button onClick={() => handleDelete(entry._id)}>Delete</button>
-                </div>
-              </div>
-            ))
-          )}
         </section>
-      )}
+
+        {/* Entry Form */}
+        <EntryForm
+          onSubmit={handleSubmit}
+          editEntry={editEntry}
+          cancelEntry={cancelEdit}
+        />
+
+        {/* History */}
+        {loading ? (
+          <p>Loading entries</p>
+        ) : (
+          <section className="entries-list">
+            <h2>Reflection History</h2>
+
+            {entries.length === 0 ? (
+              <p>No entries available. Add your first reflection above.</p>
+            ) : (
+              // Map entries
+              entries.map((entry) => (
+                <div
+                  className="entry-card"
+                  key={entry._id}
+                >
+                  <h3>{entry.mood}</h3>
+                  <p><strong>Category:</strong> {entry.category}</p>
+                  <p><strong>Intensity:</strong> {entry.intensity}/10</p>
+                  <p><strong>Detected Emotion:</strong> {entry.emotion || "Not analyzed"}</p>
+                  <p><strong>Date::</strong>{" "} {new Date(entry.createdAt).toLocaleString()}</p>
+                  <p>{entry.journal}</p>
+
+                  {/* Buttons */}
+                  <div className="entry-actions">
+                    <button onClick={() => setEditEntry(entry)}>Edit</button>
+                    <button onClick={() => handleDelete(entry._id)}>Delete</button>
+                  </div>
+                </div>
+              ))
+            )}
+          </section>
+        )}
 
 
-  </>
-);
+      </main>
+    </>
+  );
 
 
 }

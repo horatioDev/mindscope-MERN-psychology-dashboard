@@ -1,5 +1,13 @@
 client/node_modules/
 server/node_modules/
-server/.env
 node_modules/
+
+server/.env
+.env
+
+ml-service/venv/
+ml-service/__pycache__/
+*.pyc
+
 .vscode/
+.DS_Store
