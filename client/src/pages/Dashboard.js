@@ -137,10 +137,12 @@ function Dashboard() {
       {/* Dashboard Header */}
       <main className="dashboard">
         <section className="dashboard-hero">
-          <h1>MindScope Dashboard</h1>
-          <p className="subtitle">
-            Track emotional patterns, reflection categories, and mood intensity.
-          </p>
+          <div>
+            <h1>MindScope Dashboard</h1>
+            <p className="subtitle">
+              Track emotional patterns, reflection categories, and mood intensity.
+            </p>
+          </div>
         </section>
 
         {error && <p className="error-message">{error}</p>}
@@ -151,38 +153,38 @@ function Dashboard() {
           <div className="stat-card">
             <h3>Total Entries</h3>
             <p>{totalEntries}</p>
-          </div>
-
-          <div className="stat-card">
+            <br />
             <h3>Average Intensity</h3>
             <p>{averageIntensity}/10</p>
-          </div>
-
-          <div className="stat-card">
+            <br />
             <h3>Most Common Mood</h3>
             <p>{mostCommonMood}</p>
-          </div>
-
-          <div className="stat-card">
+            <br />
             <h3>Latest Entry</h3>
             <p>{latestEntryDate}</p>
           </div>
         </section>
 
-        {/* Charts */}
-        <section className="charts-container">
-          {/* Mood Chart */}
-          <MoodChart entries={entries} />
-          {/* Emotion Chart */}
-          <EmotionChart entries={entries} />
+        <section className="dashboard-grid">
+          {/* Charts */}
+          <div className="dashboard-panel">
+            {/* Mood Chart */}
+            <MoodChart entries={entries} />
+            {/* Emotion Chart */}
+            <EmotionChart entries={entries} />
+          </div>
+
+          {/* Entry Form */}
+          <div className="dashboard-panel">
+            <EntryForm
+              onSubmit={handleSubmit}
+              editEntry={editEntry}
+              cancelEntry={cancelEdit}
+            />
+          </div>
         </section>
 
-        {/* Entry Form */}
-        <EntryForm
-          onSubmit={handleSubmit}
-          editEntry={editEntry}
-          cancelEntry={cancelEdit}
-        />
+
 
         {/* History */}
         {loading ? (
@@ -203,7 +205,9 @@ function Dashboard() {
                   <h3>{entry.mood}</h3>
                   <p><strong>Category:</strong> {entry.category}</p>
                   <p><strong>Intensity:</strong> {entry.intensity}/10</p>
-                  <p><strong>Detected Emotion:</strong> {entry.emotion || "Not analyzed"}</p>
+                  <p><strong>Detected Emotion:</strong> <span className={`emotion-badge ${entry.emotion}`}>
+                    {entry.emotion || "Not analyzed"}
+                  </span></p>
                   <p><strong>Date::</strong>{" "} {new Date(entry.createdAt).toLocaleString()}</p>
                   <p>{entry.journal}</p>
 
